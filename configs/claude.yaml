@@ -1,0 +1,11 @@
+# Claude baseline settings (Phase 4). Model IDs re-confirmed via the Models API before each run.
+models:
+  - claude-haiku-5-5
+  - claude-sonnet-5-5
+  - claude-opus-5-5
+modes: [zero_shot, few_shot]
+effort: low               # thinking can't be disabled on Opus 5.5; low effort on all three for parity
+max_tokens: 1024          # room for low-effort thinking + a short JSON label
+concurrency: 4
+max_retries: 5
+cache_ttl: 5m             # prompt caching on the system prompt (label list + few-shot block)

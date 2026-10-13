@@ -1,0 +1,47 @@
+[project]
+name = "small-vs-frontier"
+version = "0.1.0"
+description = "LoRA fine-tuned small model vs Claude on Banking77: accuracy, latency, cost, and break-even."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "anthropic>=1.13.0",
+    "datasets>=5.1.0",
+    "fastapi>=0.143.0",
+    "matplotlib>=3.11.2",
+    "numpy>=2.5.4",
+    "pandas>=3.0.6",
+    "python-dotenv>=1.2.4",
+    "pyyaml>=6.0.3",
+    "scikit-learn>=1.9.1",
+    "uvicorn[standard]>=0.54.0",
+]
+
+[project.optional-dependencies]
+# llama-cpp-python for the laptop-CPU benchmark and the /classify endpoint.
+# Prebuilt CPU wheels: uv sync --extra cpu (index configured below).
+cpu = ["llama-cpp-python"]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+    "pytest>=9.1.1",
+]
+
+[build-system]
+requires = ["uv_build>=0.11,<0.12"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "svf"
+
+[[tool.uv.index]]
+name = "llama-cpp-cpu"
+url = "https://abetlen.github.io/llama-cpp-python/whl/cpu"
+explicit = true
+
+[tool.uv.sources]
+llama-cpp-python = { index = "llama-cpp-cpu" }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

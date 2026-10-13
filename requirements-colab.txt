@@ -1,0 +1,5 @@
+# GPU dependencies installed inside the Colab runtime (Phase 1). Exact versions get pinned once verified on a T4.
+unsloth
+pyyaml
+scikit-learn
+python-dotenv

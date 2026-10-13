@@ -1,0 +1,3 @@
+# Data-efficiency sweep (Phase 5): nested stratified subsets of the train split.
+extends: base.yaml
+fractions: [0.10, 0.25, 0.50, 1.00]

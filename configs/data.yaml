@@ -1,0 +1,7 @@
+# Banking77 data preparation (Phase 2)
+dataset: PolyAI/banking77
+seed: 42
+val_frac: 0.10            # stratified hold-out from the official train split
+test_sample_size: 1000    # stratified fixed sample of the official test split (Claude runs)
+few_shot_per_label: 3     # examples per label for few-shot prompts, drawn from train only
+out_dir: data/processed

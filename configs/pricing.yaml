@@ -1,0 +1,32 @@
+# USD per million tokens (MTok).
+# Source: https://platform.claude.com/docs/en/about-claude/pricing
+date_checked: 2026-10-13
+source: https://platform.claude.com/docs/en/about-claude/pricing
+batch_discount: 0.5       # Batch API: 50% off input and output; stacks with cache multipliers
+
+claude:
+  claude-haiku-5-5:       # prompts up to 100K tokens (ours are ~2-8K)
+    input: 0.10
+    cache_write_5m: 0.125
+    cache_write_1h: 0.20
+    cache_read: 0.01
+    output: 0.50
+  claude-sonnet-5-5:
+    input: 2.00
+    cache_write_5m: 2.50
+    cache_write_1h: 4.00
+    cache_read: 0.10
+    output: 10.00
+  claude-opus-5-5:
+    input: 4.00
+    cache_write_5m: 5.00
+    cache_write_1h: 8.00
+    cache_read: 0.20
+    output: 20.00
+
+# Small model on GPU. Colab free tier costs $0, so we use a configurable market rate
+# for a comparable rented T4 to make the comparison fair. Change to your own rate.
+gpu:
+  name: NVIDIA T4 (16GB)
+  hourly_usd: 0.35
+  hours_per_month: 730    # for an always-on server scenario in the break-even analysis

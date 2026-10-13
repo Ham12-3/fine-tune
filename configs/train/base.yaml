@@ -1,0 +1,26 @@
+# QLoRA hyperparameters (Phase 5). The base model is confirmed in Phase 3.
+base_model: unsloth/Qwen3.5-2B   # candidate; finalised in Phase 3
+load_in_4bit: true
+max_seq_len: 128
+seed: 42
+
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.0
+  target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+
+train:
+  epochs: 3
+  per_device_batch_size: 16
+  grad_accum_steps: 1
+  learning_rate: 2.0e-4
+  lr_scheduler: cosine
+  warmup_ratio: 0.03
+  weight_decay: 0.0
+  logging_steps: 10
+  save_steps: 100          # checkpoint to Drive often (Colab can disconnect)
+  save_total_limit: 2
+  completion_only_loss: true
+
+drive_root: /content/drive/MyDrive/small-vs-frontier

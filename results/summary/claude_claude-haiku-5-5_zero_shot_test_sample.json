@@ -1,0 +1,207 @@
+{
+ "run": "claude_claude-haiku-5-5_zero_shot_test_sample",
+ "model": "claude-haiku-5-5",
+ "mode": "zero_shot",
+ "batch": false,
+ "split": "test_sample",
+ "n": 1000,
+ "config": {
+  "models": [
+   "claude-haiku-5-5",
+   "claude-sonnet-5-5",
+   "claude-opus-5-5"
+  ],
+  "modes": [
+   "zero_shot",
+   "few_shot"
+  ],
+  "effort": "low",
+  "max_tokens": 1024,
+  "concurrency": 4,
+  "max_retries": 5,
+  "cache_ttl": "5m"
+ },
+ "git_sha": "178e968-dirty",
+ "data_sha256": {
+  "test_sample": "38eb42120bb93968843cdc3cadf007e56ec1d5794790e4d73e379413ba3f547e",
+  "few_shot": "fc9f26b39cefaf3c827f8f75f0b41855d8955da3aa816f735d6544c749b48799"
+ },
+ "pricing_date_checked": "2026-10-13",
+ "hardware": {
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.12.10",
+  "cpu": "Intel64 Family 6 Model 140 Stepping 1, GenuineIntel",
+  "cpu_count": 8
+ },
+ "started": "2026-10-13T19:40:10+00:00",
+ "finished": "2026-10-13T19:40:10+00:00",
+ "metrics": {
+  "n": 1000,
+  "accuracy": 0.818,
+  "macro_f1": 0.810687388254672,
+  "invalid_rate": 0.0,
+  "per_class_f1": {
+   "activate_my_card": 0.8461538461538461,
+   "age_limit": 0.9629629629629629,
+   "apple_pay_or_google_pay": 1.0,
+   "atm_support": 0.896551724137931,
+   "automatic_top_up": 0.9565217391304348,
+   "balance_not_updated_after_bank_transfer": 0.6363636363636364,
+   "balance_not_updated_after_cheque_or_cash_deposit": 0.96,
+   "beneficiary_not_allowed": 0.375,
+   "cancel_transfer": 1.0,
+   "card_about_to_expire": 0.88,
+   "card_acceptance": 0.9629629629629629,
+   "card_arrival": 0.8275862068965517,
+   "card_delivery_estimate": 0.6666666666666666,
+   "card_linking": 0.88,
+   "card_not_working": 0.896551724137931,
+   "card_payment_fee_charged": 0.88,
+   "card_payment_not_recognised": 0.6666666666666666,
+   "card_payment_wrong_exchange_rate": 0.9166666666666666,
+   "card_swallowed": 0.9629629629629629,
+   "cash_withdrawal_charge": 0.8666666666666667,
+   "cash_withdrawal_not_recognised": 0.9166666666666666,
+   "change_pin": 0.6666666666666666,
+   "compromised_card": 0.7272727272727273,
+   "contactless_not_working": 0.96,
+   "country_support": 0.9629629629629629,
+   "declined_card_payment": 0.6285714285714286,
+   "declined_cash_withdrawal": 0.8888888888888888,
+   "declined_transfer": 0.6,
+   "direct_debit_payment_not_recognised": 0.7,
+   "disposable_card_limits": 0.8888888888888888,
+   "edit_personal_details": 1.0,
+   "exchange_charge": 0.8148148148148148,
+   "exchange_rate": 0.896551724137931,
+   "exchange_via_app": 0.64,
+   "extra_charge_on_statement": 0.8275862068965517,
+   "failed_transfer": 0.7586206896551724,
+   "fiat_currency_support": 0.5333333333333333,
+   "get_disposable_virtual_card": 0.96,
+   "get_physical_card": 0.42105263157894735,
+   "getting_spare_card": 0.96,
+   "getting_virtual_card": 0.9285714285714286,
+   "lost_or_stolen_card": 0.896551724137931,
+   "lost_or_stolen_phone": 0.9230769230769231,
+   "order_physical_card": 0.8333333333333334,
+   "passcode_forgotten": 0.9230769230769231,
+   "pending_card_payment": 0.8461538461538461,
+   "pending_cash_withdrawal": 1.0,
+   "pending_top_up": 0.9230769230769231,
+   "pending_transfer": 0.5384615384615384,
+   "pin_blocked": 0.9166666666666666,
+   "receiving_money": 0.6363636363636364,
+   "Refund_not_showing_up": 0.9166666666666666,
+   "request_refund": 0.8571428571428571,
+   "reverted_card_payment?": 0.631578947368421,
+   "supported_cards_and_currencies": 0.7142857142857143,
+   "terminate_account": 0.9629629629629629,
+   "top_up_by_bank_transfer_charge": 0.5,
+   "top_up_by_card_charge": 0.7096774193548387,
+   "top_up_by_cash_or_cheque": 0.8333333333333334,
+   "top_up_failed": 0.9230769230769231,
+   "top_up_limits": 0.9629629629629629,
+   "top_up_reverted": 0.88,
+   "topping_up_by_card": 0.125,
+   "transaction_charged_twice": 0.9230769230769231,
+   "transfer_fee_charged": 0.8571428571428571,
+   "transfer_into_account": 0.625,
+   "transfer_not_received_by_recipient": 0.6153846153846154,
+   "transfer_timing": 0.7222222222222222,
+   "unable_to_verify_identity": 0.8461538461538461,
+   "verify_my_identity": 0.8125,
+   "verify_source_of_funds": 0.96,
+   "verify_top_up": 0.9629629629629629,
+   "virtual_card_not_working": 0.8181818181818182,
+   "visa_or_mastercard": 0.9629629629629629,
+   "why_verify_identity": 0.631578947368421,
+   "wrong_amount_of_cash_received": 0.88,
+   "wrong_exchange_rate_for_cash_withdrawal": 0.631578947368421
+  }
+ },
+ "confused_pairs": [
+  {
+   "gold": "get_physical_card",
+   "pred": "change_pin",
+   "count": 9
+  },
+  {
+   "gold": "beneficiary_not_allowed",
+   "pred": "declined_transfer",
+   "count": 6
+  },
+  {
+   "gold": "why_verify_identity",
+   "pred": "verify_my_identity",
+   "count": 5
+  },
+  {
+   "gold": "topping_up_by_card",
+   "pred": "top_up_by_card_charge",
+   "count": 5
+  },
+  {
+   "gold": "direct_debit_payment_not_recognised",
+   "pred": "card_payment_not_recognised",
+   "count": 5
+  },
+  {
+   "gold": "reverted_card_payment?",
+   "pred": "declined_card_payment",
+   "count": 5
+  },
+  {
+   "gold": "fiat_currency_support",
+   "pred": "exchange_via_app",
+   "count": 4
+  },
+  {
+   "gold": "card_delivery_estimate",
+   "pred": "card_arrival",
+   "count": 4
+  },
+  {
+   "gold": "exchange_via_app",
+   "pred": "fiat_currency_support",
+   "count": 4
+  },
+  {
+   "gold": "top_up_by_bank_transfer_charge",
+   "pred": "transfer_into_account",
+   "count": 4
+  }
+ ],
+ "parse_methods": {
+  "json": 1000
+ },
+ "stop_reasons": {
+  "end_turn": 1000
+ },
+ "errors": 0,
+ "usage_total": {
+  "input_tokens": 23272,
+  "cache_creation_input_tokens": 3395,
+  "cache_read_input_tokens": 3391605,
+  "output_tokens": 27417
+ },
+ "usage_mean": {
+  "input_tokens": 23.272,
+  "cache_creation_input_tokens": 3.395,
+  "cache_read_input_tokens": 3391.605,
+  "output_tokens": 27.417
+ },
+ "calls_with_cache_read": 999,
+ "cost_usd": 0.050376125,
+ "cost_usd_standard": 0.050376125,
+ "cost_usd_batch": 0.0251880625,
+ "cost_per_1k_usd_standard": 0.050376125,
+ "cost_per_1k_usd_batch": 0.0251880625,
+ "latency": {
+  "n": 1000,
+  "mean_s": 1.2035092090023682,
+  "p50_s": 1.081020750105381,
+  "p95_s": 1.945301345037296,
+  "max_s": 5.575175400124863
+ }
+}

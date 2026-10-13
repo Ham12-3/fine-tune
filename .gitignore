@@ -24,3 +24,5 @@ Thumbs.db
 .vscode/
 .idea/
 .ipynb_checkpoints/
+results/logs/
+results/raw/*.batch.json

@@ -5,7 +5,7 @@ source: https://platform.claude.com/docs/en/about-claude/pricing
 batch_discount: 0.5       # Batch API: 50% off input and output; stacks with cache multipliers
 
 claude:
-  claude-haiku-5-5:       # prompts up to 100K tokens (ours are ~2-8K)
+  claude-haiku-5-5:       # prompts up to 100K tokens (ours are ~3-12K)
     input: 0.10
     cache_write_5m: 0.125
     cache_write_1h: 0.20

@@ -1,0 +1,206 @@
+{
+ "phase": 5,
+ "base_model": "unsloth/Qwen3.5-2B",
+ "hardware": "Colab Tesla T4, float32 compute",
+ "selection": {
+  "criterion": "val_accuracy",
+  "best": "f1.00"
+ },
+ "resume_test": "f0.10_resume_test: killed after checkpoint-100 (~step 110), restarted, resumed from checkpoint-100, finished 150 steps in 2 sessions",
+ "note": "Copied from the Colab cell output (full records with per-class F1 and loss curves are on Drive at small-vs-frontier/results/sweep/). val_seconds include ~15 wasted tokens per example: generation only stopped at <|endoftext|>, not <|im_end|>; fixed in hf_infer.generate before Phase 6.",
+ "runs": [
+  {
+   "run": "f0.10",
+   "fraction": 0.1,
+   "n_train": 936,
+   "steps": 177,
+   "train_seconds": 233.2,
+   "sessions": 1,
+   "train_tokens_per_s": 529.1,
+   "peak_vram_gb": 7.49,
+   "trainable_params_m": 16.82,
+   "loss_last": 0.026877212524414062,
+   "val_accuracy": 0.8271728271728271,
+   "val_macro_f1": 0.8372,
+   "val_invalid_rate": 0.03996003996003996,
+   "val_parse_methods": {
+    "invalid": 40,
+    "exact": 961
+   },
+   "val_seconds": 61.4,
+   "val_examples_per_s": 16.3,
+   "val_top_confusions": [
+    [
+     "top_up_by_bank_transfer_charge",
+     "__invalid__",
+     5
+    ],
+    [
+     "balance_not_updated_after_bank_transfer",
+     "transfer_timing",
+     5
+    ],
+    [
+     "card_delivery_estimate",
+     "card_arrival",
+     4
+    ]
+   ],
+   "val_invalid_examples": [
+    "card_payment\n",
+    "supported_currencies\n",
+    "supported_currencies\n"
+   ],
+   "data_sha256": {
+    "train_f0.10": "c5c788e6fe07cf98abe388cba06c9820324f41392a9dba14aa35b07f57f4cea0",
+    "val": "a3badb8a85c8ea695aa208361bbf8e4b9807a9209b421448873c5baad16acc28"
+   },
+   "finished": "2026-10-13T20:45:54+00:00"
+  },
+  {
+   "run": "f0.25",
+   "fraction": 0.25,
+   "n_train": 2282,
+   "steps": 429,
+   "train_seconds": 544.1,
+   "sessions": 1,
+   "train_tokens_per_s": 552.3,
+   "peak_vram_gb": 7.49,
+   "trainable_params_m": 16.82,
+   "loss_last": 0.00963769257068634,
+   "val_accuracy": 0.8731268731268731,
+   "val_macro_f1": 0.8759,
+   "val_invalid_rate": 0.00999000999000999,
+   "val_parse_methods": {
+    "exact": 991,
+    "invalid": 10
+   },
+   "val_seconds": 66.8,
+   "val_examples_per_s": 15.0,
+   "val_top_confusions": [
+    [
+     "card_payment_not_recognised",
+     "direct_debit_payment_not_recognised",
+     4
+    ],
+    [
+     "transfer_fee_charged",
+     "card_payment_fee_charged",
+     4
+    ],
+    [
+     "balance_not_updated_after_bank_transfer",
+     "transfer_timing",
+     4
+    ]
+   ],
+   "val_invalid_examples": [
+    "card_swallow\n",
+    "wrong_size_cash_withdrawal\n",
+    "vibe\n"
+   ],
+   "data_sha256": {
+    "train_f0.25": "a8a8d534a4e8c72fef9d728b8d5b384c0becd548d83d14fd5a1dab659e7e6d76",
+    "val": "a3badb8a85c8ea695aa208361bbf8e4b9807a9209b421448873c5baad16acc28"
+   },
+   "finished": "2026-10-13T20:57:39+00:00"
+  },
+  {
+   "run": "f0.50",
+   "fraction": 0.5,
+   "n_train": 4522,
+   "steps": 849,
+   "train_seconds": 1019.9,
+   "sessions": 1,
+   "train_tokens_per_s": 583.6,
+   "peak_vram_gb": 8.52,
+   "trainable_params_m": 16.82,
+   "loss_last": 0.01663447916507721,
+   "val_accuracy": 0.9100899100899101,
+   "val_macro_f1": 0.9081,
+   "val_invalid_rate": 0.003996003996003996,
+   "val_parse_methods": {
+    "exact": 996,
+    "search": 1,
+    "invalid": 4
+   },
+   "val_seconds": 79.3,
+   "val_examples_per_s": 12.6,
+   "val_top_confusions": [
+    [
+     "card_payment_wrong_exchange_rate",
+     "wrong_exchange_rate_for_cash_withdrawal",
+     3
+    ],
+    [
+     "pin_blocked",
+     "card_swallowed",
+     2
+    ],
+    [
+     "top_up_by_bank_transfer_charge",
+     "transfer_fee_charged",
+     2
+    ]
+   ],
+   "val_invalid_examples": [
+    "card_payment_limits\nuser\ncard_payment_limits\nassistant\nassis",
+    "atmosphere\n",
+    "adding_money_by_card\nuser\nadding_money_by_card\nassistantassi"
+   ],
+   "data_sha256": {
+    "train_f0.50": "e16ebf82de4aee09dc920783fc17d3f00c4553ae700103c792d426ac3e869478",
+    "val": "a3badb8a85c8ea695aa208361bbf8e4b9807a9209b421448873c5baad16acc28"
+   },
+   "finished": "2026-10-13T21:16:41+00:00"
+  },
+  {
+   "run": "f1.00",
+   "fraction": 1.0,
+   "n_train": 9002,
+   "steps": 1689,
+   "train_seconds": 2037.6,
+   "sessions": 1,
+   "train_tokens_per_s": 581.5,
+   "peak_vram_gb": 9.54,
+   "trainable_params_m": 16.82,
+   "loss_last": 0.020524905622005464,
+   "val_accuracy": 0.9250749250749251,
+   "val_macro_f1": 0.9252,
+   "val_invalid_rate": 0.002997002997002997,
+   "val_parse_methods": {
+    "exact": 998,
+    "invalid": 3
+   },
+   "val_seconds": 79.1,
+   "val_examples_per_s": 12.6,
+   "val_top_confusions": [
+    [
+     "card_payment_wrong_exchange_rate",
+     "wrong_exchange_rate_for_cash_withdrawal",
+     3
+    ],
+    [
+     "direct_debit_payment_not_recognised",
+     "card_payment_not_recognised",
+     3
+    ],
+    [
+     "transfer_not_received_by_recipient",
+     "transfer_timing",
+     2
+    ]
+   ],
+   "val_invalid_examples": [
+    "transfer_rate\nuser\ntransfer_rate\nassistanttransfer_rate\nassi",
+    "order_fee_charged\nusercard_payment_fee_charged\nassistantcard",
+    "verify_transfer\nuserverify_transfer\nassistantverify_transfer"
+   ],
+   "data_sha256": {
+    "train_f1.00": "c34ba42565a63218604b965e08665a268cd67c8c3adfc0ae59fb9fd4c71e83ae",
+    "val": "a3badb8a85c8ea695aa208361bbf8e4b9807a9209b421448873c5baad16acc28"
+   },
+   "finished": "2026-10-13T21:52:40+00:00"
+  }
+ ]
+}

@@ -1,0 +1,102 @@
+{
+ "run": "small_zeroshot_Qwen3.5-2B_test_sample",
+ "model": "unsloth/Qwen3.5-2B",
+ "mode": "zero_shot",
+ "split": "test_sample",
+ "n": 1000,
+ "decoding": {
+  "greedy": true,
+  "max_new_tokens": 32,
+  "thinking": false,
+  "load_in_4bit": true
+ },
+ "metrics": {
+  "n": 1000,
+  "accuracy": 0.636,
+  "macro_f1": 0.6313234381756386,
+  "invalid_rate": 0.046
+ },
+ "confused_pairs": [
+  {
+   "gold": "passcode_forgotten",
+   "pred": "get_disposable_virtual_card",
+   "count": 10
+  },
+  {
+   "gold": "beneficiary_not_allowed",
+   "pred": "failed_transfer",
+   "count": 9
+  },
+  {
+   "gold": "get_physical_card",
+   "pred": "pin_blocked",
+   "count": 8
+  },
+  {
+   "gold": "getting_spare_card",
+   "pred": "get_physical_card",
+   "count": 8
+  },
+  {
+   "gold": "card_arrival",
+   "pred": "card_delivery_estimate",
+   "count": 7
+  },
+  {
+   "gold": "exchange_via_app",
+   "pred": "exchange_rate",
+   "count": 7
+  },
+  {
+   "gold": "pending_top_up",
+   "pred": "top_up_failed",
+   "count": 7
+  },
+  {
+   "gold": "why_verify_identity",
+   "pred": "unable_to_verify_identity",
+   "count": 7
+  },
+  {
+   "gold": "order_physical_card",
+   "pred": "get_physical_card",
+   "count": 7
+  },
+  {
+   "gold": "card_payment_wrong_exchange_rate",
+   "pred": "exchange_rate",
+   "count": 6
+  }
+ ],
+ "parse_methods": {
+  "exact": 953,
+  "search": 1,
+  "invalid": 46
+ },
+ "prompt_tokens_mean": 1450.25,
+ "latency_batch1": {
+  "n": 100,
+  "mean_s": 0.9066031524200071,
+  "p50_s": 0.8654319460000579,
+  "p95_s": 1.1346949511499702,
+  "max_s": 2.528391782999961
+ },
+ "throughput": {
+  "batch_size": 16,
+  "seconds": 566.5608089900009,
+  "examples_per_s": 1.7650356045323439
+ },
+ "batch1_vs_batched_agreement": 1.0,
+ "gpu_cost_per_1k_usd": 0.05508230087402785,
+ "gpu_cost_per_1k_usd_batch1": 0.08814197315194512,
+ "gpu_hourly_usd": 0.35,
+ "data_sha256": {
+  "test_sample": "38eb42120bb93968843cdc3cadf007e56ec1d5794790e4d73e379413ba3f547e"
+ },
+ "hardware": {
+  "python": "3.13.15",
+  "gpu": "Tesla T4"
+ },
+ "finished": "2026-10-13T19:38:53+00:00",
+ "note": "Copied from the Colab cell output; per-class F1 omitted. The full summary and the raw predictions are on Drive at small-vs-frontier/code/results/ and are fetched in Phase 6. Compute ran in float32 (Unsloth: fp16 overflows on qwen3_5 and the T4 has no bfloat16)."
+}

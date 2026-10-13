@@ -59,6 +59,21 @@ def test_sum_usage_and_gpu_cost():
     assert cost.gpu_cost(3600, PRICING) == 0.36
 
 
+def test_break_even_pay_per_use():
+    # $1 training, GPU $0.001/pred, Claude $0.003/pred -> saves $0.002/pred -> 500 predictions to pay back
+    assert cost.break_even_pay_per_use(1.0, 0.001, 0.003) == pytest.approx(500)
+    assert cost.break_even_pay_per_use(1.0, 0.003, 0.003) is None  # equal cost: never pays back
+    assert cost.break_even_pay_per_use(1.0, 0.004, 0.003) is None  # GPU dearer: never
+    assert cost.break_even_pay_per_use(0.0, 0.001, 0.003) == 0
+
+
+def test_break_even_always_on():
+    assert cost.break_even_always_on(250.0, 0.001) == pytest.approx(250_000)
+    assert cost.break_even_always_on(250.0, 0.001, train_usd_per_month=10.0) == pytest.approx(260_000)
+    assert cost.break_even_always_on(250.0, 0.001, capacity_per_month=100_000) is None  # one GPU can't serve it
+    assert cost.break_even_always_on(250.0, 0.0) is None
+
+
 def test_real_pricing_file_loads():
     p = cost.load_pricing()
     assert p["claude"]["claude-sonnet-5-5"]["cache_read"] == 0.10

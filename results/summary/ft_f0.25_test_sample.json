@@ -1,0 +1,104 @@
+{
+ "run": "ft_f0.25_test_sample",
+ "adapter": "f0.25",
+ "split": "test_sample",
+ "n": 1000,
+ "decoding": {
+  "greedy": true,
+  "max_new_tokens": 24,
+  "thinking": false,
+  "load_in_4bit": true,
+  "stop_ids": [
+   248044,
+   248046
+  ]
+ },
+ "metrics": {
+  "n": 1000,
+  "accuracy": 0.895,
+  "macro_f1": 0.8993280235362188,
+  "invalid_rate": 0.011
+ },
+ "confused_pairs": [
+  {
+   "gold": "pending_top_up",
+   "pred": "top_up_failed",
+   "count": 3
+  },
+  {
+   "gold": "card_payment_not_recognised",
+   "pred": "direct_debit_payment_not_recognised",
+   "count": 3
+  },
+  {
+   "gold": "reverted_card_payment?",
+   "pred": "declined_card_payment",
+   "count": 3
+  },
+  {
+   "gold": "fiat_currency_support",
+   "pred": "exchange_via_app",
+   "count": 2
+  },
+  {
+   "gold": "exchange_via_app",
+   "pred": "fiat_currency_support",
+   "count": 2
+  },
+  {
+   "gold": "card_payment_not_recognised",
+   "pred": "compromised_card",
+   "count": 2
+  },
+  {
+   "gold": "topping_up_by_card",
+   "pred": "__invalid__",
+   "count": 2
+  },
+  {
+   "gold": "compromised_card",
+   "pred": "card_not_working",
+   "count": 2
+  },
+  {
+   "gold": "compromised_card",
+   "pred": "__invalid__",
+   "count": 2
+  },
+  {
+   "gold": "Refund_not_showing_up",
+   "pred": "reverted_card_payment?",
+   "count": 2
+  }
+ ],
+ "parse_methods": {
+  "exact": 989,
+  "invalid": 11
+ },
+ "prompt_tokens_mean": 37.78,
+ "latency_batch1": {
+  "n": 100,
+  "mean_s": 0.5797469655300483,
+  "p50_s": 0.5811546814993562,
+  "p95_s": 0.7830276395506189,
+  "max_s": 0.9531563379987347
+ },
+ "batch1_vs_batched_agreement": 1.0,
+ "throughput": {
+  "batch_size": 64,
+  "seconds": 46.28283140899475,
+  "examples_per_s": 21.606284005469398
+ },
+ "gpu_cost_per_1k_usd": 0.004499719720318934,
+ "gpu_cost_per_1k_usd_batch1": 0.05636428831542136,
+ "gpu_hourly_usd": 0.35,
+ "data_sha256": {
+  "test_sample": "38eb42120bb93968843cdc3cadf007e56ec1d5794790e4d73e379413ba3f547e"
+ },
+ "hardware": {
+  "python": "3.13.15",
+  "gpu": "Tesla T4"
+ },
+ "finished": "2026-10-13T22:22:22+00:00",
+ "note": "Copied from the Colab cell output; per-class F1 omitted (the full summary and raw predictions are on Drive at small-vs-frontier/code/results/). GPU: Tesla T4, float32 compute, 4-bit weights."
+}

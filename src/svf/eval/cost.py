@@ -30,3 +30,20 @@ def sum_usage(rows: list[dict]) -> dict:
 
 def gpu_cost(seconds: float, pricing: dict) -> float:
     return seconds / 3600 * pricing["gpu"]["hourly_usd"]
+
+
+def break_even_pay_per_use(train_usd: float, gpu_per_pred: float, claude_per_pred: float) -> float | None:
+    """Total predictions after which fine-tuning (one-off training + GPU time per prediction, billed only while
+    running) costs less than Claude. None if the GPU is not cheaper per prediction, so it never pays back."""
+    saving = claude_per_pred - gpu_per_pred
+    return train_usd / saving if saving > 0 else None
+
+
+def break_even_always_on(monthly_gpu_usd: float, claude_per_pred: float, capacity_per_month: float | None = None,
+                         train_usd_per_month: float = 0.0) -> float | None:
+    """Monthly volume above which an always-on GPU server (fixed monthly cost) beats paying Claude per prediction.
+    None if that volume exceeds what one GPU can serve in a month."""
+    if claude_per_pred <= 0:
+        return None
+    v = (monthly_gpu_usd + train_usd_per_month) / claude_per_pred
+    return None if capacity_per_month is not None and v > capacity_per_month else v

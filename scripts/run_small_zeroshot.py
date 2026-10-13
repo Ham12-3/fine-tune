@@ -48,7 +48,8 @@ def main() -> int:
     n_lat = min(args.latency_n, len(rows))
 
     print(f"latency pass: {n_lat} examples at batch 1")
-    hf_infer.generate(model, tok, texts[:2], args.max_new_tokens, 1)  # warm-up
+    hf_infer.generate(model, tok, texts[:2], args.max_new_tokens, 1)  # warm-up, batch 1
+    hf_infer.generate(model, tok, texts[:args.batch_size], args.max_new_tokens, args.batch_size)  # warm-up, batched
     lat_out, lat_s = hf_infer.generate(model, tok, texts[:n_lat], args.max_new_tokens, 1)
     print(f"throughput pass: {len(rows)} examples at batch {args.batch_size}")
     outs, batch_s = hf_infer.generate(model, tok, texts, args.max_new_tokens, args.batch_size, log=print)

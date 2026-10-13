@@ -1,0 +1,21 @@
+{
+ "date": "2026-10-13",
+ "script": "scripts/probe_model.py",
+ "hardware": "Colab Tesla T4 16GB, fp16, Unsloth 2026.10.5, torch 2.11.0+cu130",
+ "setup": "4-bit load, LoRA r=16 on language-model attention + MLP; train step = batch 16 x 64 tokens (median of steps 3-6); generation = batch 1, greedy, 16 new tokens, 77-label zero-shot prompt (median of 3 after warm-up)",
+ "note": "zero_shot_output is one example only (expected card_arrival); it says nothing about accuracy, which Phase 4 measures. load_s includes the first download.",
+ "hub": {
+  "Qwen/Qwen3.5-2B": {"license": "apache-2.0", "gated": false, "params_b": 2.27, "modalities": "image-text-to-text", "released": "2026-02-28"},
+  "google/gemma-4-E2B-it": {"license": "apache-2.0", "gated": false, "params_b": 5.12, "modalities": "any-to-any", "released": "2026-03-02"},
+  "microsoft/Phi-4-mini-instruct": {"license": "mit", "gated": false, "params_b": 3.84, "modalities": "text", "released": "2025-02-19"},
+  "meta-llama/Llama-3.2-3B-Instruct": {"license": "llama3.2", "gated": "manual", "params_b": 3.21, "modalities": "text", "released": "2024-09-18", "probed": false}
+ },
+ "llama_cpp": "convert support for Qwen3_5ForConditionalGeneration, Gemma4ForConditionalGeneration and Phi3ForCausalLM; llama-cpp-python 0.3.36 (2026-10-01, CPU wheel win_amd64) vendors llama.cpp 0c1e570 which has LLM_ARCH_QWEN35 and LLM_ARCH_GEMMA4",
+ "probes": {
+  "unsloth/Qwen3.5-2B": {"vram_after_load_gb": 2.4, "trainable_params_m": 16.82, "lora_targets": ["down_proj", "gate_proj", "in_proj_a", "in_proj_b", "in_proj_qkv", "in_proj_z", "k_proj", "o_proj", "out_proj", "q_proj", "up_proj", "v_proj"], "train_step_s": 1.342, "train_peak_vram_gb": 3.66, "prompt_tokens": 1411, "gen16_latency_s": 1.137, "zero_shot_output": "card_delivery_estimate", "load_s": 83.8, "kernel_note": "causal_conv1d not installed; reference PyTorch path used"},
+  "unsloth/gemma-4-E2B-it": {"vram_after_load_gb": 8.13, "trainable_params_m": 24.16, "lora_targets": ["down_proj", "gate_proj", "k_proj", "o_proj", "q_proj", "up_proj", "v_proj"], "train_step_s": 1.337, "train_peak_vram_gb": 9.0, "prompt_tokens": 1574, "gen16_latency_s": 1.735, "zero_shot_output": "card_arrival", "load_s": 104.7},
+  "unsloth/Phi-4-mini-instruct": {"vram_after_load_gb": 3.24, "trainable_params_m": 23.07, "lora_targets": ["down_proj", "gate_up_proj", "o_proj", "qkv_proj"], "train_step_s": 1.955, "train_peak_vram_gb": 4.4, "prompt_tokens": 1315, "gen16_latency_s": 1.133, "zero_shot_output": "card_arrival", "load_s": 76.5}
+ },
+ "choice": "unsloth/Qwen3.5-2B",
+ "fallback": "unsloth/Phi-4-mini-instruct"
+}

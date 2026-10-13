@@ -37,6 +37,15 @@ def test_confused_pairs_and_latency():
     assert metrics.latency_stats([]) == {}
 
 
+def test_mcnemar():
+    a = [True] * 10 + [True] * 8 + [False] * 2
+    b = [True] * 10 + [False] * 8 + [True] * 2
+    r = metrics.mcnemar(a, b)
+    assert (r["both"], r["only_a"], r["only_b"]) == (10, 8, 2)
+    assert r["p_value"] == pytest.approx(0.109375)  # exact binomial, 10 discordant pairs, 8 vs 2
+    assert metrics.mcnemar([True, False], [True, False])["p_value"] == 1.0  # no discordant pairs
+
+
 PRICING = {"batch_discount": 0.5, "gpu": {"hourly_usd": 0.36},
            "claude": {"m": {"input": 2.0, "cache_write_5m": 2.5, "cache_write_1h": 4.0, "cache_read": 0.1, "output": 10.0}}}
 

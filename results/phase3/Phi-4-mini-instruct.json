@@ -1,0 +1,33 @@
+{
+ "model": "unsloth/Phi-4-mini-instruct",
+ "gpu": "Tesla T4",
+ "kernels": {
+  "fla": true,
+  "causal_conv1d": false,
+  "flash_attn": false,
+  "xformers": true
+ },
+ "load_s": 76.5,
+ "vram_after_load_gb": 3.24,
+ "dtype": "torch.float16",
+ "linear_suffixes": {
+  "o_proj": 32,
+  "qkv_proj": 32,
+  "gate_up_proj": 32,
+  "down_proj": 32
+ },
+ "trainable_params_m": 23.07,
+ "lora_targets": [
+  "down_proj",
+  "gate_up_proj",
+  "o_proj",
+  "qkv_proj"
+ ],
+ "train_step_s": 1.955,
+ "train_peak_vram_gb": 4.4,
+ "train_loss_finite": true,
+ "prompt_tokens": 1315,
+ "prompt_tail": "h_withdrawal: A cash withdrawal abroad got a wrong exchange rate.\n\nMessage: I am still waiting on my card?\nAnswer with the intent name only.<|end|><|assistant|>",
+ "gen16_latency_s": 1.133,
+ "zero_shot_output": "card_arrival"
+}

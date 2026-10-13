@@ -1,0 +1,49 @@
+{
+ "model": "unsloth/Qwen3.5-2B",
+ "gpu": "Tesla T4",
+ "kernels": {
+  "fla": true,
+  "causal_conv1d": false,
+  "flash_attn": false,
+  "xformers": true
+ },
+ "load_s": 83.8,
+ "vram_after_load_gb": 2.4,
+ "dtype": "torch.float16",
+ "linear_suffixes": {
+  "out_proj": 18,
+  "in_proj_qkv": 18,
+  "in_proj_z": 18,
+  "in_proj_b": 18,
+  "in_proj_a": 18,
+  "gate_proj": 24,
+  "up_proj": 24,
+  "down_proj": 24,
+  "q_proj": 6,
+  "k_proj": 6,
+  "v_proj": 6,
+  "o_proj": 6
+ },
+ "trainable_params_m": 16.82,
+ "lora_targets": [
+  "down_proj",
+  "gate_proj",
+  "in_proj_a",
+  "in_proj_b",
+  "in_proj_qkv",
+  "in_proj_z",
+  "k_proj",
+  "o_proj",
+  "out_proj",
+  "q_proj",
+  "up_proj",
+  "v_proj"
+ ],
+ "train_step_s": 1.342,
+ "train_peak_vram_gb": 3.66,
+ "train_loss_finite": true,
+ "prompt_tokens": 1411,
+ "prompt_tail": "abroad got a wrong exchange rate.\n\nMessage: I am still waiting on my card?\nAnswer with the intent name only.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+ "gen16_latency_s": 1.137,
+ "zero_shot_output": "card_delivery_estimate\n"
+}

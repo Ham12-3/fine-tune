@@ -17,7 +17,8 @@ import json
 import sys
 from pathlib import Path
 
-from svf.eval import cost
+from svf.data.load_banking77 import read_jsonl
+from svf.eval import cost, metrics
 
 ROOT = Path(__file__).resolve().parents[1]
 SUM = ROOT / "results" / "summary"
@@ -87,8 +88,23 @@ def main() -> int:
     else:
         assumptions = {}
 
+    # Paired significance on the shared 1k sample (needs the raw predictions in results/raw/)
+    paired = []
+    ft_raw = ROOT / "results" / "raw" / "ft_f1.00_test_sample.jsonl"
+    if ft_raw.exists():
+        ft = {r["id"]: r["pred"] == r["gold"] for r in read_jsonl(ft_raw)}
+        for model in pricing["claude"]:
+            for mode in ("zero_shot", "few_shot"):
+                p = ROOT / "results" / "raw" / f"claude_{model}_{mode}_test_sample.jsonl"
+                if not p.exists():
+                    continue
+                cl = {r["id"]: r["pred"] == r["gold"] for r in read_jsonl(p)}
+                ids = sorted(ft.keys() & cl.keys())
+                paired.append({"a": "fine-tuned f1.00", "b": f"{model} {mode}",
+                               **metrics.mcnemar([ft[i] for i in ids], [cl[i] for i in ids])})
+
     out = {"pricing_date_checked": str(pricing["date_checked"]), "rows": rows, "break_even": break_even,
-           "break_even_assumptions": assumptions}
+           "break_even_assumptions": assumptions, "paired_mcnemar": paired}
     (SUM / "comparison.json").write_text(json.dumps(out, indent=1) + "\n", encoding="utf-8", newline="\n")
     with (SUM / "comparison.csv").open("w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=list(dict.fromkeys(k for r in rows for k in r)), lineterminator="\n")
@@ -107,6 +123,11 @@ def main() -> int:
             print(f"  {b['vs']:<32}{b['claude_pricing']:<10} pay-per-use: {f'{ppu:,.0f} preds' if ppu is not None else 'never':<16}"
                   f" always-on: {f'{ao:,.0f}/month' if ao is not None else 'beyond 1 GPU capacity':<22}"
                   f" acc delta {b['accuracy_delta_ft_minus_claude']:+.3f}")
+    if paired:
+        print("\npaired McNemar on the 1k sample (only_a = fine-tuned right, Claude wrong):")
+        for p in paired:
+            print(f"  vs {p['b']:<28} both {p['both']:>4}  only_ft {p['only_a']:>3}  only_claude {p['only_b']:>3}"
+                  f"  p = {p['p_value']:.2g}")
     return 0
 
 

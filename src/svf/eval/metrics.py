@@ -30,6 +30,19 @@ def confused_pairs(gold: list[str], pred: list[str | None], top: int = 10) -> li
     return [{"gold": g, "pred": x, "count": c} for (g, x), c in pairs.most_common(top)]
 
 
+def mcnemar(a_correct: list[bool], b_correct: list[bool]) -> dict:
+    """Paired comparison of two systems on the same examples: exact two-sided McNemar test on the discordant pairs."""
+    from scipy.stats import binomtest
+
+    if len(a_correct) != len(b_correct):
+        raise ValueError("paired lists differ in length")
+    only_a = sum(a and not b for a, b in zip(a_correct, b_correct))
+    only_b = sum(b and not a for a, b in zip(a_correct, b_correct))
+    p = binomtest(only_a, only_a + only_b, 0.5).pvalue if only_a + only_b else 1.0
+    return {"n": len(a_correct), "both": sum(a and b for a, b in zip(a_correct, b_correct)),
+            "only_a": only_a, "only_b": only_b, "p_value": float(p)}
+
+
 def latency_stats(seconds: list[float]) -> dict:
     if not seconds:
         return {}

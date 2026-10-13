@@ -1,0 +1,42 @@
+{
+ "model": "unsloth/gemma-4-E2B-it",
+ "gpu": "Tesla T4",
+ "kernels": {
+  "fla": true,
+  "causal_conv1d": false,
+  "flash_attn": false,
+  "xformers": true
+ },
+ "load_s": 104.7,
+ "vram_after_load_gb": 8.13,
+ "dtype": "torch.float16",
+ "linear_suffixes": {
+  "q_proj": 35,
+  "k_proj": 15,
+  "v_proj": 15,
+  "o_proj": 35,
+  "gate_proj": 35,
+  "up_proj": 35,
+  "down_proj": 35,
+  "per_layer_input_gate": 35,
+  "per_layer_projection": 35,
+  "per_layer_model_projection": 1
+ },
+ "trainable_params_m": 24.16,
+ "lora_targets": [
+  "down_proj",
+  "gate_proj",
+  "k_proj",
+  "o_proj",
+  "q_proj",
+  "up_proj",
+  "v_proj"
+ ],
+ "train_step_s": 1.337,
+ "train_peak_vram_gb": 9.0,
+ "train_loss_finite": true,
+ "prompt_tokens": 1574,
+ "prompt_tail": "_withdrawal: A cash withdrawal abroad got a wrong exchange rate.\n\nMessage: I am still waiting on my card?\nAnswer with the intent name only.<turn|>\n<|turn>model\n",
+ "gen16_latency_s": 1.735,
+ "zero_shot_output": "card_arrival"
+}

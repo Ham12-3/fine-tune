@@ -318,5 +318,61 @@
   "ft_capacity_per_month": 55762398.800460264,
   "ft_throughput_per_s": 21.218568797739827,
   "sweep_total_train_usd": 0.3728277777777777
- }
+ },
+ "paired_mcnemar": [
+  {
+   "a": "fine-tuned f1.00",
+   "b": "claude-haiku-5-5 zero_shot",
+   "n": 1000,
+   "both": 795,
+   "only_a": 139,
+   "only_b": 23,
+   "p_value": 2.0212128777560003e-21
+  },
+  {
+   "a": "fine-tuned f1.00",
+   "b": "claude-haiku-5-5 few_shot",
+   "n": 1000,
+   "both": 840,
+   "only_a": 94,
+   "only_b": 20,
+   "p_value": 1.1680094670975612e-12
+  },
+  {
+   "a": "fine-tuned f1.00",
+   "b": "claude-sonnet-5-5 zero_shot",
+   "n": 1000,
+   "both": 841,
+   "only_a": 93,
+   "only_b": 23,
+   "p_value": 3.5971461923291597e-11
+  },
+  {
+   "a": "fine-tuned f1.00",
+   "b": "claude-sonnet-5-5 few_shot",
+   "n": 1000,
+   "both": 869,
+   "only_a": 65,
+   "only_b": 19,
+   "p_value": 4.748492975346606e-07
+  },
+  {
+   "a": "fine-tuned f1.00",
+   "b": "claude-opus-5-5 zero_shot",
+   "n": 1000,
+   "both": 866,
+   "only_a": 68,
+   "only_b": 23,
+   "p_value": 2.5221536534654515e-06
+  },
+  {
+   "a": "fine-tuned f1.00",
+   "b": "claude-opus-5-5 few_shot",
+   "n": 1000,
+   "both": 886,
+   "only_a": 48,
+   "only_b": 25,
+   "p_value": 0.009542211425865477
+  }
+ ]
 }

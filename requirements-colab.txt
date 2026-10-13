@@ -1,5 +1,13 @@
-# GPU dependencies installed inside the Colab runtime (Phase 1). Exact versions get pinned once verified on a T4.
-unsloth
+# GPU dependencies installed inside the Colab runtime (Phase 1).
+# Verified 2026-10-13 on a Tesla T4, Colab Python 3.13.15, torch 2.11.0+cu130 (pulled in by unsloth).
+# xformers in the Colab image doesn't match this torch, so unsloth falls back to PyTorch SDPA attention (fine at max_seq_len 128).
+unsloth==2026.10.5
+transformers==5.17.0
+trl==1.15.0
+peft==0.21.1
+bitsandbytes==0.50.2
+accelerate==1.15.0
+datasets==4.8.5
 pyyaml
 scikit-learn
 python-dotenv

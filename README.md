@@ -27,4 +27,15 @@ cp .env.example .env    # then fill in ANTHROPIC_API_KEY and HF_TOKEN yourself
 make test
 ```
 
-GPU work runs in Google Colab (T4). Setup for that is documented with Phase 1.
+## Setup (Colab GPU)
+
+GPU work runs in Google Colab on a T4. Claude Code drives the notebook through
+[colab-mcp](https://github.com/googlecolab/colab-mcp), and every cell is recorded in
+`notebooks/train_colab.ipynb` so it can also be run by hand.
+
+1. Runtime → Change runtime type → **T4 GPU**.
+2. Run the Drive mount cell yourself (it needs a Google sign-in popup). It creates
+   `MyDrive/small-vs-frontier/{checkpoints,adapters,results,gguf}`.
+3. Add `HF_TOKEN` in Colab Secrets (🔑, notebook access on) and run the token cell from the Colab UI.
+   Secrets can't be read from cells run remotely, so re-run it after every runtime restart.
+4. Install the pinned GPU stack from `requirements-colab.txt` (verified on a T4: Python 3.13, torch 2.11 + CUDA 13.0, Unsloth 2026.10.5).

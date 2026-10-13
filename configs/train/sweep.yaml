@@ -1,3 +1,4 @@
-# Data-efficiency sweep (Phase 5): nested stratified subsets of the train split.
+# Data-efficiency sweep (Phase 5): one QLoRA run per training fraction.
+# The fractions and the nested stratified subsets themselves are fixed in Phase 2
+# (configs/data.yaml: sweep_fractions -> data/processed/train_f*.jsonl), so every run sees identical data.
 extends: base.yaml
-fractions: [0.10, 0.25, 0.50, 1.00]

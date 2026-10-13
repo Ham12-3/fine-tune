@@ -1,0 +1,158 @@
+# The 77 Banking77 intents in the dataset's canonical id order (label_id = position).
+# Names are kept exactly as published, including "Refund_not_showing_up" and "reverted_card_payment?".
+# Descriptions are hand-written one-liners for the Claude and zero-shot prompts, written from the
+# label names and a few train examples only (never from the test split).
+- name: activate_my_card
+  description: Activating a newly received card, or a card that won't activate.
+- name: age_limit
+  description: Minimum age to open or use an account, including accounts for children.
+- name: apple_pay_or_google_pay
+  description: Using Apple Pay, Google Pay or a smartwatch with the card, including topping up through them.
+- name: atm_support
+  description: Which ATMs or cash machines accept the card.
+- name: automatic_top_up
+  description: Setting up, using or finding automatic top-ups.
+- name: balance_not_updated_after_bank_transfer
+  description: Money sent in by bank transfer isn't showing in the balance yet.
+- name: balance_not_updated_after_cheque_or_cash_deposit
+  description: A cheque or cash deposit isn't showing in the balance yet.
+- name: beneficiary_not_allowed
+  description: A transfer is blocked because the beneficiary or payee isn't allowed or can't be added.
+- name: cancel_transfer
+  description: Cancelling or reversing a transfer that was already made.
+- name: card_about_to_expire
+  description: The card is about to expire; getting a replacement, its cost or how fast it comes.
+- name: card_acceptance
+  description: Where the card can or can't be used to pay (shops, merchants, websites).
+- name: card_arrival
+  description: An ordered card hasn't arrived yet, or tracking its delivery.
+- name: card_delivery_estimate
+  description: How long card delivery takes, or getting a card sooner or on a specific date.
+- name: card_linking
+  description: Linking or re-adding a card in the app, including a card that was lost and then found.
+- name: card_not_working
+  description: The card isn't working in general, not tied to one declined payment or withdrawal.
+- name: card_payment_fee_charged
+  description: An unexpected fee charged on a card payment.
+- name: card_payment_not_recognised
+  description: A card payment the customer doesn't recognise or didn't make.
+- name: card_payment_wrong_exchange_rate
+  description: A card payment in a foreign currency got a wrong or poor exchange rate.
+- name: card_swallowed
+  description: An ATM kept (swallowed) the card.
+- name: cash_withdrawal_charge
+  description: A fee charged for withdrawing cash.
+- name: cash_withdrawal_not_recognised
+  description: A cash withdrawal the customer doesn't recognise or didn't make.
+- name: change_pin
+  description: Changing the card PIN.
+- name: compromised_card
+  description: The card may be compromised or used by someone else without permission.
+- name: contactless_not_working
+  description: Contactless payments aren't working.
+- name: country_support
+  description: Which countries the service or cards are available in.
+- name: declined_card_payment
+  description: A card payment was declined.
+- name: declined_cash_withdrawal
+  description: A cash withdrawal at an ATM was declined.
+- name: declined_transfer
+  description: A transfer was declined.
+- name: direct_debit_payment_not_recognised
+  description: A direct debit payment the customer doesn't recognise.
+- name: disposable_card_limits
+  description: Limits and restrictions on disposable virtual cards, such as how many times they can be used.
+- name: edit_personal_details
+  description: Changing personal details such as name or address.
+- name: exchange_charge
+  description: Fees for exchanging currency.
+- name: exchange_rate
+  description: Which exchange rate is used, or what money is worth in another currency.
+- name: exchange_via_app
+  description: Exchanging money between currencies in the app.
+- name: extra_charge_on_statement
+  description: An unexplained extra charge on the statement.
+- name: failed_transfer
+  description: A transfer failed or couldn't go through.
+- name: fiat_currency_support
+  description: Which currencies can be held, received or used in the account.
+- name: get_disposable_virtual_card
+  description: Getting a disposable virtual card, or what disposable cards are for.
+- name: get_physical_card
+  description: Getting the PIN or first physical card after joining.
+- name: getting_spare_card
+  description: Ordering an additional or spare card, and any charge for it.
+- name: getting_virtual_card
+  description: Ordering or getting a virtual card.
+- name: lost_or_stolen_card
+  description: The card is lost or stolen.
+- name: lost_or_stolen_phone
+  description: The phone with the banking app is lost or stolen.
+- name: order_physical_card
+  description: Ordering a physical card, including its cost and where it can be delivered.
+- name: passcode_forgotten
+  description: The app passcode or password is forgotten.
+- name: pending_card_payment
+  description: A card payment is showing as pending.
+- name: pending_cash_withdrawal
+  description: A cash withdrawal is showing as pending.
+- name: pending_top_up
+  description: A top-up is pending or taking a long time.
+- name: pending_transfer
+  description: A transfer is still pending.
+- name: pin_blocked
+  description: The PIN is blocked after too many wrong attempts.
+- name: receiving_money
+  description: Receiving money such as a salary or a payment from someone.
+- name: Refund_not_showing_up
+  description: A refund from a merchant hasn't appeared in the account.
+- name: request_refund
+  description: How to request a refund for a purchase.
+- name: reverted_card_payment?
+  description: A card payment was reverted or returned to the account.
+- name: supported_cards_and_currencies
+  description: Which cards and currencies can be used to add money.
+- name: terminate_account
+  description: Closing or deleting the account.
+- name: top_up_by_bank_transfer_charge
+  description: Fees for topping up by bank transfer.
+- name: top_up_by_card_charge
+  description: Fees for topping up with a card.
+- name: top_up_by_cash_or_cheque
+  description: Topping up with cash or a cheque.
+- name: top_up_failed
+  description: A top-up failed or didn't work.
+- name: top_up_limits
+  description: Limits on top-up amounts or how often you can top up.
+- name: top_up_reverted
+  description: A top-up was reverted or cancelled, or the topped-up money disappeared.
+- name: topping_up_by_card
+  description: Topping up with a card, or a card top-up not showing.
+- name: transaction_charged_twice
+  description: The same transaction was charged twice.
+- name: transfer_fee_charged
+  description: A fee was charged on a transfer.
+- name: transfer_into_account
+  description: How to transfer money into the account.
+- name: transfer_not_received_by_recipient
+  description: A sent transfer hasn't reached the recipient.
+- name: transfer_timing
+  description: How long transfers take to arrive.
+- name: unable_to_verify_identity
+  description: Problems completing identity verification.
+- name: verify_my_identity
+  description: How to verify identity and which documents are needed.
+- name: verify_source_of_funds
+  description: Verifying where the money in the account came from.
+- name: verify_top_up
+  description: Verifying a card top-up, such as finding the verification code.
+- name: virtual_card_not_working
+  description: A virtual card isn't working.
+- name: visa_or_mastercard
+  description: Whether the card is Visa or Mastercard.
+- name: why_verify_identity
+  description: Why identity verification is required.
+- name: wrong_amount_of_cash_received
+  description: The ATM gave out a different amount of cash than requested.
+- name: wrong_exchange_rate_for_cash_withdrawal
+  description: A cash withdrawal abroad got a wrong exchange rate.

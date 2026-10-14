@@ -63,6 +63,17 @@ def main() -> int:
                      "throughput_per_s": s["throughput"]["examples_per_s"],
                      "train_usd": cost.gpu_cost(train_s[adapter], pricing) if adapter in train_s else 0.0})
 
+    s = load("gguf_laptop_test_sample")
+    if s:
+        m, lat = s["metrics"], s["latency_batch1"]
+        rows.append({"system": f"Qwen3.5-2B + QLoRA Q4_K_M ({s['threads']}-thread laptop CPU)", "mode": "fine-tuned f1.00",
+                     "split": s["split"], "n": m["n"], "accuracy": m["accuracy"], "macro_f1": m["macro_f1"],
+                     "invalid_rate": m["invalid_rate"], "latency_p50_s": lat["p50_s"], "latency_p95_s": lat["p95_s"],
+                     "latency_note": f"CPU batch 1, {s['hardware']['cpu']}", "cost_per_1k_usd": 0.0,
+                     "cost_note": "owned laptop: no marginal compute cost (electricity not counted)",
+                     "cost_per_1k_usd_batch_api": None, "throughput_per_s": s["throughput"]["examples_per_s"],
+                     "train_usd": cost.gpu_cost(train_s["f1.00"], pricing) if "f1.00" in train_s else 0.0})
+
     best = next((r for r in rows if r["mode"] == "fine-tuned f1.00" and r["split"] == "test_sample"), None)
     break_even = []
     if best:

@@ -1,0 +1,21 @@
+{
+ "phase": 7,
+ "model": "qwen3.5-2b-banking77-f1.00-Q4_K_M.gguf",
+ "adapter": "f1.00",
+ "base_model": "unsloth/Qwen3.5-2B",
+ "quant": "Q4_K_M",
+ "llama_cpp_commit": "0c1e57098bba43ac29e6e3b677cdceebdd22334f",
+ "runtime": "llama-cpp-python 0.3.36 (CPU wheel, vendors the same llama.cpp commit)",
+ "steps": [
+  "merge: PEFT merge_and_unload on CPU in bfloat16 (scripts/merge_and_gguf.py), 104.6 s",
+  "convert: convert_hf_to_gguf.py --outtype f16 (3,775,708,992 bytes), 73.0 s",
+  "quantise: llama-quantize Q4_K_M, 171.9 s (llama-quantize build 413.7 s)",
+  "fix: scripts/fix_gguf_nextn.py rewrote block_count 25 -> 24, nextn_predict_layers 1 -> 0, recurrent_layers[:24]; tensors copied unchanged"
+ ],
+ "drive_original": {"bytes": 1274396480, "sha256": "305e3b7f4186bcba32ab9c5212e9ef68e077978b6f2cb77c3a8bd5fb648a1c6f",
+                    "note": "fails to load: declares a 25th (multi-token-prediction) block whose tensors were never exported"},
+ "fixed": {"bytes": 1274396480, "sha256": "2e9ff85b3b97af93662cb17a67dec06b3481a453f84d6e524fb1974a8683c611"},
+ "tensors": 320,
+ "eos_token_id": 248046,
+ "prompt_template_check": "the Phase 5 dry run decoded a training example as '<|im_start|>user\\n...<|im_end|>\\n<|im_start|>assistant\\n<think>\\n\\n</think>\\n\\ncard_arrival<|im_end|>', identical to gguf_infer.TEMPLATE plus the label"
+}

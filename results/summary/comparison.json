@@ -186,6 +186,23 @@
    "cost_per_1k_usd_batch_api": null,
    "throughput_per_s": 23.834619695533185,
    "train_usd": 0.19809999999999997
+  },
+  {
+   "system": "Qwen3.5-2B + QLoRA Q4_K_M (4-thread laptop CPU)",
+   "mode": "fine-tuned f1.00",
+   "split": "test_sample",
+   "n": 1000,
+   "accuracy": 0.938,
+   "macro_f1": 0.9385227454300059,
+   "invalid_rate": 0.001,
+   "latency_p50_s": 1.6509477999061346,
+   "latency_p95_s": 2.8395204549655317,
+   "latency_note": "CPU batch 1, 11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz",
+   "cost_per_1k_usd": 0.0,
+   "cost_note": "owned laptop: no marginal compute cost (electricity not counted)",
+   "cost_per_1k_usd_batch_api": null,
+   "throughput_per_s": 0.5605912281171996,
+   "train_usd": 0.19809999999999997
   }
  ],
  "break_even": [
@@ -373,6 +390,16 @@
    "only_a": 48,
    "only_b": 25,
    "p_value": 0.009542211425865477
+  },
+  {
+   "a": "fine-tuned f1.00 (T4, 4-bit bnb)",
+   "b": "fine-tuned f1.00 (laptop, Q4_K_M GGUF)",
+   "same_prediction": 0.977,
+   "n": 1000,
+   "both": 927,
+   "only_a": 7,
+   "only_b": 11,
+   "p_value": 0.480682373046875
   }
  ]
 }

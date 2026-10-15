@@ -2,10 +2,12 @@
 # see notebooks/train_colab.ipynb. Everything here runs on the laptop CPU.
 
 PY := uv run python
+PY_CPU := uv run --extra cpu python
 MODELS ?= claude-haiku-5-5 claude-sonnet-5-5 claude-opus-5-5
 MODES ?= zero_shot few_shot
+GGUF ?= models/qwen3.5-2b-banking77-f1.00-Q4_K_M.gguf
 
-.PHONY: help setup setup-cpu data baseline baseline-pilot fetch-results eval bench-cpu report serve test
+.PHONY: help setup setup-cpu data baseline baseline-pilot fix-gguf eval bench-cpu report serve test
 
 help:
 	@echo "setup          install core + dev deps (uv sync)"
@@ -13,8 +15,8 @@ help:
 	@echo "data           build splits, 1k test sample, few-shot pool (Phase 2)"
 	@echo "baseline-pilot 20-example Claude pilot to measure tokens (cheap)"
 	@echo "baseline       Claude zero-shot + few-shot on the test sample (PAID, asks first)"
-	@echo "fetch-results  copy results/GGUF from Google Drive into results/ and models/"
-	@echo "eval           compute metrics + costs for every run in results/raw"
+	@echo "fix-gguf       drop the absent nextn layer from a GGUF made before the merge fix (IN=... OUT=...)"
+	@echo "eval           comparison table, break-even and paired tests from results/summary"
 	@echo "bench-cpu      benchmark the GGUF model on this laptop CPU"
 	@echo "report         tables + charts into results/summary and results/figures"
 	@echo "serve          FastAPI app on http://127.0.0.1:8000"
@@ -35,20 +37,20 @@ baseline-pilot:
 baseline:
 	$(PY) scripts/run_claude.py --models $(MODELS) --modes $(MODES)
 
-fetch-results:
-	$(PY) scripts/fetch_results.py
+fix-gguf:
+	$(PY) scripts/fix_gguf_nextn.py $(IN) $(OUT)
 
 eval:
 	$(PY) scripts/evaluate.py
 
 bench-cpu:
-	$(PY) scripts/bench_cpu.py
+	$(PY_CPU) scripts/bench_cpu.py --gguf $(GGUF)
 
 report:
 	$(PY) scripts/make_report.py
 
 serve:
-	uv run uvicorn svf.serving.app:app --host 127.0.0.1 --port 8000
+	SVF_GGUF=$(GGUF) uv run --extra cpu uvicorn svf.serving.app:app --host 127.0.0.1 --port 8000
 
 test:
-	uv run pytest -q
+	uv run --extra cpu pytest -q

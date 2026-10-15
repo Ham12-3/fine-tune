@@ -1,0 +1,185 @@
+{
+ "run": "gguf_laptop_test_sample",
+ "gguf": "qwen3.5-2b-banking77-f1.00-Q4_K_M.gguf",
+ "gguf_sha256": "2e9ff85b3b97af93662cb17a67dec06b3481a453f84d6e524fb1974a8683c611",
+ "gguf_bytes": 1274396480,
+ "split": "test_sample",
+ "n": 1000,
+ "threads": 4,
+ "load_s": 5.0508399999234825,
+ "decoding": {
+  "greedy": true,
+  "max_tokens": 24,
+  "stop": [
+   "<|im_end|>",
+   "<|endoftext|>"
+  ],
+  "batch": 1
+ },
+ "metrics": {
+  "n": 1000,
+  "accuracy": 0.938,
+  "macro_f1": 0.9385227454300059,
+  "invalid_rate": 0.001,
+  "per_class_f1": {
+   "activate_my_card": 0.96,
+   "age_limit": 1.0,
+   "apple_pay_or_google_pay": 1.0,
+   "atm_support": 1.0,
+   "automatic_top_up": 1.0,
+   "balance_not_updated_after_bank_transfer": 0.75,
+   "balance_not_updated_after_cheque_or_cash_deposit": 0.9166666666666666,
+   "beneficiary_not_allowed": 0.9230769230769231,
+   "cancel_transfer": 1.0,
+   "card_about_to_expire": 1.0,
+   "card_acceptance": 1.0,
+   "card_arrival": 1.0,
+   "card_delivery_estimate": 1.0,
+   "card_linking": 0.9629629629629629,
+   "card_not_working": 0.8888888888888888,
+   "card_payment_fee_charged": 0.9230769230769231,
+   "card_payment_not_recognised": 0.88,
+   "card_payment_wrong_exchange_rate": 1.0,
+   "card_swallowed": 0.9629629629629629,
+   "cash_withdrawal_charge": 0.96,
+   "cash_withdrawal_not_recognised": 0.9629629629629629,
+   "change_pin": 1.0,
+   "compromised_card": 0.7692307692307693,
+   "contactless_not_working": 0.9166666666666666,
+   "country_support": 1.0,
+   "declined_card_payment": 0.8275862068965517,
+   "declined_cash_withdrawal": 0.896551724137931,
+   "declined_transfer": 0.8461538461538461,
+   "direct_debit_payment_not_recognised": 0.8695652173913043,
+   "disposable_card_limits": 0.9629629629629629,
+   "edit_personal_details": 1.0,
+   "exchange_charge": 0.88,
+   "exchange_rate": 0.8888888888888888,
+   "exchange_via_app": 0.8888888888888888,
+   "extra_charge_on_statement": 1.0,
+   "failed_transfer": 0.8275862068965517,
+   "fiat_currency_support": 0.7692307692307693,
+   "get_disposable_virtual_card": 1.0,
+   "get_physical_card": 0.9629629629629629,
+   "getting_spare_card": 1.0,
+   "getting_virtual_card": 1.0,
+   "lost_or_stolen_card": 0.8571428571428571,
+   "lost_or_stolen_phone": 0.9629629629629629,
+   "order_physical_card": 0.96,
+   "passcode_forgotten": 1.0,
+   "pending_card_payment": 0.9230769230769231,
+   "pending_cash_withdrawal": 1.0,
+   "pending_top_up": 0.96,
+   "pending_transfer": 0.8571428571428571,
+   "pin_blocked": 0.9166666666666666,
+   "receiving_money": 1.0,
+   "Refund_not_showing_up": 1.0,
+   "request_refund": 1.0,
+   "reverted_card_payment?": 0.8333333333333334,
+   "supported_cards_and_currencies": 0.8148148148148148,
+   "terminate_account": 1.0,
+   "top_up_by_bank_transfer_charge": 0.9166666666666666,
+   "top_up_by_card_charge": 0.9166666666666666,
+   "top_up_by_cash_or_cheque": 0.9230769230769231,
+   "top_up_failed": 0.88,
+   "top_up_limits": 1.0,
+   "top_up_reverted": 0.8888888888888888,
+   "topping_up_by_card": 0.9629629629629629,
+   "transaction_charged_twice": 1.0,
+   "transfer_fee_charged": 0.9629629629629629,
+   "transfer_into_account": 0.9230769230769231,
+   "transfer_not_received_by_recipient": 0.8695652173913043,
+   "transfer_timing": 0.8888888888888888,
+   "unable_to_verify_identity": 0.9629629629629629,
+   "verify_my_identity": 0.96,
+   "verify_source_of_funds": 1.0,
+   "verify_top_up": 1.0,
+   "virtual_card_not_working": 0.9166666666666666,
+   "visa_or_mastercard": 1.0,
+   "why_verify_identity": 0.9629629629629629,
+   "wrong_amount_of_cash_received": 0.96,
+   "wrong_exchange_rate_for_cash_withdrawal": 0.8888888888888888
+  }
+ },
+ "confused_pairs": [
+  {
+   "gold": "fiat_currency_support",
+   "pred": "exchange_via_app",
+   "count": 2
+  },
+  {
+   "gold": "supported_cards_and_currencies",
+   "pred": "fiat_currency_support",
+   "count": 2
+  },
+  {
+   "gold": "card_payment_not_recognised",
+   "pred": "compromised_card",
+   "count": 2
+  },
+  {
+   "gold": "compromised_card",
+   "pred": "lost_or_stolen_card",
+   "count": 2
+  },
+  {
+   "gold": "declined_transfer",
+   "pred": "failed_transfer",
+   "count": 2
+  },
+  {
+   "gold": "reverted_card_payment?",
+   "pred": "declined_transfer",
+   "count": 2
+  },
+  {
+   "gold": "balance_not_updated_after_bank_transfer",
+   "pred": "transfer_timing",
+   "count": 2
+  },
+  {
+   "gold": "balance_not_updated_after_bank_transfer",
+   "pred": "pending_transfer",
+   "count": 2
+  },
+  {
+   "gold": "exchange_charge",
+   "pred": "exchange_rate",
+   "count": 2
+  },
+  {
+   "gold": "top_up_by_card_charge",
+   "pred": "supported_cards_and_currencies",
+   "count": 2
+  }
+ ],
+ "parse_methods": {
+  "exact": 999,
+  "invalid": 1
+ },
+ "prompt_tokens_mean": 37.02,
+ "completion_tokens_mean": 3.98,
+ "hit_max_tokens": 0,
+ "latency_batch1": {
+  "n": 1000,
+  "mean_s": 1.7836682557009627,
+  "p50_s": 1.6509477999061346,
+  "p95_s": 2.8395204549655317,
+  "max_s": 6.813192200148478
+ },
+ "throughput": {
+  "seconds": 1783.8309803002048,
+  "examples_per_s": 0.5605912281171996
+ },
+ "llama_cpp_python": "0.3.36",
+ "data_sha256": {
+  "test_sample": "38eb42120bb93968843cdc3cadf007e56ec1d5794790e4d73e379413ba3f547e"
+ },
+ "hardware": {
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.12.10",
+  "cpu": "11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz",
+  "cpu_count": 8
+ },
+ "finished": "2026-10-14T21:11:55+00:00"
+}

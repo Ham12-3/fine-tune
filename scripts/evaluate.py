@@ -113,6 +113,14 @@ def main() -> int:
                 ids = sorted(ft.keys() & cl.keys())
                 paired.append({"a": "fine-tuned f1.00", "b": f"{model} {mode}",
                                **metrics.mcnemar([ft[i] for i in ids], [cl[i] for i in ids])})
+        cpu_raw = ROOT / "results" / "raw" / "gguf_laptop_test_sample.jsonl"
+        if cpu_raw.exists():  # does 4-bit GGUF on CPU change the answers of the GPU model?
+            cpu_rows = {r["id"]: r for r in read_jsonl(cpu_raw)}
+            gpu_rows = {r["id"]: r for r in read_jsonl(ft_raw)}
+            ids = sorted(cpu_rows.keys() & gpu_rows.keys())
+            paired.append({"a": "fine-tuned f1.00 (T4, 4-bit bnb)", "b": "fine-tuned f1.00 (laptop, Q4_K_M GGUF)",
+                           "same_prediction": sum(cpu_rows[i]["pred"] == gpu_rows[i]["pred"] for i in ids) / len(ids),
+                           **metrics.mcnemar([ft[i] for i in ids], [cpu_rows[i]["pred"] == cpu_rows[i]["gold"] for i in ids])})
 
     out = {"pricing_date_checked": str(pricing["date_checked"]), "rows": rows, "break_even": break_even,
            "break_even_assumptions": assumptions, "paired_mcnemar": paired}
@@ -135,10 +143,10 @@ def main() -> int:
                   f" always-on: {f'{ao:,.0f}/month' if ao is not None else 'beyond 1 GPU capacity':<22}"
                   f" acc delta {b['accuracy_delta_ft_minus_claude']:+.3f}")
     if paired:
-        print("\npaired McNemar on the 1k sample (only_a = fine-tuned right, Claude wrong):")
+        print("\npaired McNemar on the 1k sample (only_a = A right and B wrong):")
         for p in paired:
-            print(f"  vs {p['b']:<28} both {p['both']:>4}  only_ft {p['only_a']:>3}  only_claude {p['only_b']:>3}"
-                  f"  p = {p['p_value']:.2g}")
+            print(f"  A {p['a']:<32} B {p['b']:<38} both {p['both']:>4}  only_a {p['only_a']:>3}"
+                  f"  only_b {p['only_b']:>3}  p = {p['p_value']:.2g}")
     return 0
 
 
